@@ -12,7 +12,6 @@ import java.util.*;
 
 /**
  * @author chenxinbao
- * @company 杭州震墨科技有限公司
  * @version 1.0
  * @date 2022/3/28 17:06
  * 自定义generator生成配置类
