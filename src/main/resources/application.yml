@@ -1,0 +1,15 @@
+server:
+  port: 10086
+spring:
+  application:
+    name: springboot-springsecurity
+  # 配置指定启动配置文件
+  profiles:
+    active: dev
+  security:
+    user:
+      name: bifang
+      password: qz1941131
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

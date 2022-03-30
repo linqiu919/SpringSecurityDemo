@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.securitydemo.mapper.BsUserComplexMapper">
+
+  <select id="selectMenuPermsByUserId" resultType="string">
+    select
+      bm.menu_perms
+    from
+      bs_user as bu
+        left join
+      bs_user_role as bur
+      on
+        bu.user_id = bur.role_id
+        left join
+      bs_role_permisson as brp
+      on
+        bur.role_id = brp.role_id
+        left join
+        bs_menu as bm
+      on
+        bm.menu_id = brp.menu_id
+    where
+      bu.user_id = #{userId}
+  </select>
+</mapper>
