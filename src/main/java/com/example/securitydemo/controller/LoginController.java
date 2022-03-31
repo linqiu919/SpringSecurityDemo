@@ -1,5 +1,7 @@
 package com.example.securitydemo.controller;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ public class LoginController {
         return "login";
     }
 
+    @PreAuthorize("hasRole('admin')")
     @RequestMapping("/index")
     public String indexHome(){
         return "index";
@@ -25,5 +28,17 @@ public class LoginController {
     @RequestMapping("/errorPage")
     public String errorPage(){
         return "error";
+    }
+
+
+    @RequestMapping("/role")
+    public String role(){
+        return "role";
+    }
+
+//    @Secured("admin")
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
     }
 }
