@@ -19,7 +19,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true)
-@Order(90)
+//@Order(90)
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -36,6 +36,12 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        /**
+         * 关闭csrf，默认是开启的
+         */
+        http.csrf().disable();
+
         /**
          * 表单登录相关配置
          */
@@ -43,7 +49,11 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
                 // 当http请求的url是/login时，进行自定义登录逻辑
                 .loginProcessingUrl("/login")
                 // 自定义登录的前端控制器
-                .loginPage("/showLogin");
+                .loginPage("/showLogin")
+                // 登录成功跳转连接
+                .successForwardUrl("/index")
+                // 设置登录失败的跳转连接
+                .failureForwardUrl("/errorPage");
 
         /**
          * http请求是否需要登录认证
@@ -58,7 +68,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
     @Override
     public void configure(WebSecurity web) throws Exception {
         //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("**/css/**","**/image/**");
+        web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html", "/**/*.png");
     }
 
     /**

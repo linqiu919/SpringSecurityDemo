@@ -5,5 +5,13 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: qz1941131
+  thymeleaf:
+    cache: false
+#    开启mvc视图解析
+    enabled: true
+    encoding: utf-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
 mybatis:
   mapper-locations: classpath:com/example/securitydemo/mapper/*.xml
