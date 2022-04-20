@@ -80,6 +80,7 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
                     System.out.println("登录失败，页面即将跳转到默认失败页面。。。");
                     response.sendRedirect("/errorPage");
                 })
+                // 用and来表示配置过滤器结束，以便进行下一个过滤器的创建和配置
                 .and()
                 // 403权限不足异常使用自定义处理器
                 .exceptionHandling().accessDeniedHandler(accessDeinedHandler);
